@@ -19,7 +19,7 @@ password = ''  # To complete
 receiver = ''  # To complete
 
 # Choose a working directory path
-pathDirectory = os.path.dirname(os.path.realpath(__file__)) + "/data"
+pathDirectory = "/data/" + os.path.dirname(os.path.realpath(__file__))
 
 
 # Color setup
@@ -64,10 +64,10 @@ def checkPastebinAPIStatut():
 def pastebinRequest():
     # Create daily directory
     todayDate = time.strftime("%d-%m-%y")
-    directory = "data/" + todayDate
+    directory = pathDirectory + "/" + todayDate
     if not os.path.exists(directory):
         os.makedirs(directory)
-    directory = pathDirectory + "/" + todayDate
+    # directory = pathDirectory + "/" + todayDate
     try:
         # Pastebin request
         jsonResponse = requests.get("https://scrape.pastebin.com/api_scraping.php").json()
