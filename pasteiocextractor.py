@@ -1,22 +1,16 @@
 #!/usr/bin/env python3
 
 # Python libraries
+from pprint import pprint
+
 import requests
 import json
 import re
 from random import randint
 import os.path
 import time
-import smtplib
-from email.mime.text import MIMEText
+from refinery import xtp
 
-# Configure your personnel email account and the receiver account
-# From
-email = ''  # To complete
-password = ''  # To complete
-
-# To
-receiver = ''  # To complete
 
 # Choose a working directory path
 pathDirectory = os.path.dirname(os.path.realpath(__file__)) + "/data"
@@ -84,13 +78,7 @@ def pastebinRequest():
                 print(savedPastePath)
                 with open(savedPastePath, "w") as savedPasteFile:
                     savedPasteFile.write(download)
-
-                # Wordlist check
-                with open("wordlist.txt", "r") as fd:
-                    lines = fd.read().splitlines()
-
-                with open(savedPastePath, "r") as readPaste:
-                    readfile = readPaste.read()
+                pprint(xtp.process(download))
 
         print("Sleeping time between 60-100 seconds")
         time.sleep(randint(60, 100))
