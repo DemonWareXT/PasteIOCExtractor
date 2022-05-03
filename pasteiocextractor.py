@@ -69,16 +69,19 @@ def pastebinRequest():
             key = element["key"]
             request = requests.get(scrape_url)
             download = request.text
-            filename = (str(key) + ".txt")
+            filename = (str(key) + ".json")
             if os.path.isfile(filename) is True:
                 pass
             else:
                 savepath = directory + "/"
                 savedPastePath = os.path.join(savepath, filename)
                 print(savedPastePath)
-                with open(savedPastePath, "w") as savedPasteFile:
-                    savedPasteFile.write(download)
-                pprint(find_iocs(download))
+                # with open(savedPastePath, "w") as savedPasteFile:
+                #    savedPasteFile.write(download)
+                output = find_iocs(download)
+                output["message"] = download
+                with open(savedPastePath, 'w') as outfile:
+                    json.dump(output, outfile)
                 quit()
 
         print("Sleeping time between 60-100 seconds")
