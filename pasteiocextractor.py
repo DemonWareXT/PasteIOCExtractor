@@ -19,7 +19,7 @@ password = ''  # To complete
 receiver = ''  # To complete
 
 # Choose a working directory path
-pathDirectory = "/data/" + os.path.dirname(os.path.realpath(__file__))
+pathDirectory = os.path.dirname(os.path.realpath(__file__)) + "/data"
 
 
 # Color setup
