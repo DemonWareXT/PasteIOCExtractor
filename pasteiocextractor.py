@@ -67,7 +67,6 @@ def pastebinRequest():
     directory = pathDirectory + "/" + todayDate
     if not os.path.exists(directory):
         os.makedirs(directory)
-    # directory = pathDirectory + "/" + todayDate
     try:
         # Pastebin request
         jsonResponse = requests.get("https://scrape.pastebin.com/api_scraping.php").json()
@@ -92,30 +91,6 @@ def pastebinRequest():
 
                 with open(savedPastePath, "r") as readPaste:
                     readfile = readPaste.read()
-
-                # Sending Email alert if match
-                for line in lines:
-                    if line in readfile:
-                        subject = 'PASTEBIN ALERT'
-                        pastebinURL = re.findall("/([A-Za-z0-9]{8}).txt", str(savedPastePath))
-                        textMessage = "This is an automatic email alert.\n We actually monitoring Pastebin and we have found a word in you wordlist (" + str(
-                            line) + ").\n You can visit the Pastebin webpage here: https://pastebin.com/" + str(
-                            ''.join(pastebinURL))
-                        message = MIMEText(textMessage)
-                        message['From'] = email
-                        message['To'] = receiver
-                        message['Subject'] = subject
-                        try:
-                            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                            server.ehlo()
-                            server.login(email, password)
-                            server.sendmail(email, receiver, message.as_string())
-                            server.close()
-
-                            print('Email sent!')
-                        except Exception as e:
-                            print(e)
-                            print('Something went wrong...')
 
         print("Sleeping time between 60-100 seconds")
         time.sleep(randint(60, 100))
