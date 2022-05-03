@@ -77,6 +77,7 @@ def pastebinRequest():
                 print(savedPastePath)
                 with open(savedPastePath, "w") as savedPasteFile:
                     savedPasteFile.write(download)
+                pprint(download)
                 pprint(xtp().process(download))
                 """
                 class xtp(Unit):
