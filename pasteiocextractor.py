@@ -82,7 +82,7 @@ def pastebinRequest():
                 output["message"] = download
                 with open(savedPastePath, 'w') as outfile:
                     json.dump(output, outfile)
-                quit()
+                # quit()
 
         print("Sleeping time between 60-100 seconds")
         time.sleep(randint(60, 100))
