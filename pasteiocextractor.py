@@ -79,7 +79,7 @@ def pastebinRequest():
                 # with open(savedPastePath, "w") as savedPasteFile:
                 #    savedPasteFile.write(download)
                 output = find_iocs(download)
-                output["message"] = download
+                output["payload"] = download
                 with open(savedPastePath, 'w') as outfile:
                     json.dump(output, outfile)
                 # quit()
