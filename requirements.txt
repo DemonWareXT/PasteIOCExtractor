@@ -1,2 +1,3 @@
 requests>=2.22.0
-git+https://github.com/binref/refinery.git
+#git+https://github.com/binref/refinery.git
+ioc-finder

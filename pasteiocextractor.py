@@ -9,7 +9,8 @@ import re
 from random import randint
 import os.path
 import time
-from refinery import xtp
+# from refinery import xtp
+from ioc_finder import find_iocs
 
 # Choose a working directory path
 pathDirectory = os.path.dirname(os.path.realpath(__file__)) + "/data"
@@ -77,13 +78,8 @@ def pastebinRequest():
                 print(savedPastePath)
                 with open(savedPastePath, "w") as savedPasteFile:
                     savedPasteFile.write(download)
-                pprint(download)
-                pprint(xtp().process(download))
-                """
-                class xtp(Unit):
-                    def process(self, data): return data.xtp()
-                pprint(xtp.process(download))
-                """
+                pprint(find_iocs(download))
+                quit()
 
         print("Sleeping time between 60-100 seconds")
         time.sleep(randint(60, 100))
